@@ -105,7 +105,7 @@ def external_crates_repository(name, annotations):
                 default_features = False,
             ),
             "byte-unit": crate.spec(
-                version = "^3.1.3",
+                version = "^4.0.14",
             ),
             "byteorder": crate.spec(
                 version = "^1.3.4",
@@ -333,7 +333,8 @@ def external_crates_repository(name, annotations):
                 version = "^1.8.0",
             ),
             "intmap": crate.spec(
-                version = "^0.7.0",
+                version = "^0.8.0",
+                features = ["serde"],
             ),
             "ipnet": crate.spec(
                 version = "^2.5.0",
