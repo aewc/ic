@@ -6,7 +6,7 @@ const GB: u64 = 1 << 30;
 const STABLE_MEMORY_SIZE: u64 = 8 * GB;
 const MAX_PAGES: u64 = STABLE_MEMORY_SIZE / WASM_PAGE_SIZE;
 
-/// A `Memory` that is based on a vector.
+/// A `Memory` that is based on canister stable storage.
 pub struct StableStorage<T> {
     _marker: PhantomData<T>,
 }
