@@ -7,11 +7,12 @@ const STABLE_MEMORY_SIZE: u64 = 8 * GB;
 const MAX_PAGES: u64 = STABLE_MEMORY_SIZE / WASM_PAGE_SIZE;
 
 /// A `Memory` that is based on canister stable storage.
-pub struct StableStorage<T> {
-    _marker: PhantomData<T>,
+#[derive(Clone)]
+pub struct StableStorage {
+    _marker: PhantomData<()>,
 }
 
-impl<T: candid::CandidType + serde::de::DeserializeOwned> Memory for StableStorage<T> {
+impl Memory for StableStorage {
     fn size(&self) -> u64 {
         stable64_size()
     }
@@ -53,5 +54,13 @@ impl<T: candid::CandidType + serde::de::DeserializeOwned> Memory for StableStora
             panic!("write: out of bounds");
         }
         stable64_write(offset, src);
+    }
+}
+
+impl StableStorage {
+    pub fn new() -> Self {
+        Self {
+            _marker: PhantomData,
+        }
     }
 }
