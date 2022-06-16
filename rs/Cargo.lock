@@ -12224,6 +12224,11 @@ dependencies = [
 [[package]]
 name = "stable-structures"
 version = "0.1.0"
+dependencies = [
+ "candid",
+ "ic-cdk 0.5.1",
+ "serde",
+]
 
 [[package]]
 name = "stable_deref_trait"

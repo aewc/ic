@@ -1,5 +1,6 @@
 pub mod btreemap;
 pub use btreemap::StableBTreeMap;
+pub mod stable_storage;
 mod types;
 pub mod vec_mem;
 use types::Address;
