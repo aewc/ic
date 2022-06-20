@@ -96,6 +96,7 @@ fn write_struct<T, M: Memory>(t: &T, addr: Address, memory: &M) {
 /// RestrictedMemory creates a limited view of another memory.  This
 /// allows one to divide the main memory into non-intersecting ranges
 /// and use different layouts in each region.
+#[derive(Clone)]
 pub struct RestrictedMemory<M: Memory> {
     page_range: core::ops::Range<u64>,
     memory: M,
