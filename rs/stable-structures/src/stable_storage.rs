@@ -1,14 +1,26 @@
+#[cfg(not(target_arch = "wasm32"))]
+use crate::VectorMemory;
+#[cfg(target_arch = "wasm32")]
 use crate::{Memory, WASM_PAGE_SIZE};
+#[cfg(target_arch = "wasm32")]
 use ic_cdk::api::stable::{stable64_grow, stable64_read, stable64_size, stable64_write};
 
+#[cfg(target_arch = "wasm32")]
 const GB: u64 = 1 << 30;
+#[cfg(target_arch = "wasm32")]
 const STABLE_MEMORY_SIZE: u64 = 8 * GB;
+#[cfg(target_arch = "wasm32")]
 const MAX_PAGES: u64 = STABLE_MEMORY_SIZE / WASM_PAGE_SIZE;
 
 /// A `Memory` that is based on canister stable storage.
+#[cfg(target_arch = "wasm32")]
 #[derive(Clone, Default)]
 pub struct StableStorage;
 
+#[cfg(not(target_arch = "wasm32"))]
+pub type StableStorage = VectorMemory;
+
+#[cfg(target_arch = "wasm32")]
 impl Memory for StableStorage {
     fn size(&self) -> u64 {
         stable64_size()

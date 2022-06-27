@@ -107,6 +107,22 @@ impl<M: Memory> RestrictedMemory<M> {
         assert!(page_range.end < u64::MAX / WASM_PAGE_SIZE);
         Self { memory, page_range }
     }
+
+    pub fn read_u64(&self, addr: u64) -> u64 {
+        read_u64(&self.memory, Address::from(addr))
+    }
+
+    pub fn write(&self, offset: u64, bytes: &[u8]) {
+        write(&self.memory, offset, bytes)
+    }
+
+    pub fn read_struct<T>(&self, addr: u64) -> T {
+        read_struct::<T, _>(Address::from(addr), &self.memory)
+    }
+
+    pub fn write_struct<T>(&self, t: &T, addr: u64) {
+        write_struct(t, Address::from(addr), &self.memory)
+    }
 }
 
 impl<M: Memory> Memory for RestrictedMemory<M> {

@@ -1,5 +1,5 @@
 mod allocator;
-mod iter;
+pub mod iter;
 mod node;
 use crate::{
     read_struct,
